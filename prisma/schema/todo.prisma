@@ -1,0 +1,5 @@
+model Todo {
+  id   String  @id @default(cuid())
+  text String
+  done Boolean @default(false)
+}

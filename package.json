@@ -1,0 +1,35 @@
+{
+  "name": "prisma-bun",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "bun build  src/index.ts --target bun --outdir dist",
+    "db": "bun --env-file .env prisma db --config prisma/prisma.config.ts",
+    "db:generate": "bun --env-file .env prisma generate --config prisma/prisma.config.ts --no-hints",
+    "db:migrate": "bun --env-file .env prisma migrate --config prisma/prisma.config.ts",
+    "db:studio": "bun --env-file .env prisma studio --config prisma/prisma.config.ts",
+    "dev": "bun run --watch src/index.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "services": "COMPOSE_BAKE=true docker compose -f ./compose.yml",
+    "services:build": "pnpm services build",
+    "services:down": "pnpm services down",
+    "services:logs": "pnpm services logs -f",
+    "services:rm": "pnpm services rm",
+    "services:up": "pnpm services up --build",
+    "services:start": "pnpm services up --build -d",
+    "start": "bun run dist/index.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.14.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prettier": "^3.6.2",
+    "prisma": "^6.14.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.2"
+  }
+}

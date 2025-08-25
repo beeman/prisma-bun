@@ -1,0 +1,18 @@
+name: prisma-bun
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: prisma
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+    volumes:
+      - ./tmp/postgres:/var/lib/postgresql/data
+    healthcheck:
+      interval: 5s
+      retries: 5
+      test: ['CMD-SHELL', 'pg_isready -U prisma']
+      timeout: 5s
